@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed - Bluedit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/home.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html">
+                <div class="logo">Bluedit</div>
+            
+            </a>
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquisar...">
+            </div>
+            <div class="user-actions" id="user-actions">
+                <a href="login.html">
+                    <button class="btn btn-outline">Entrar</button>
+                </a>
+                <a href="cadastro.html">
+                    <button class="btn btn-primary">Cadastrar</button>
+                </a>
+            </div>
+        </div>
+        
+        <div name="showUser" id="showUser">
+            
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Feed -->
+        <div class="feed">
+            <!-- Create Post -->
+            <a href="createPost.html">
+                <div class="create-post" >
+                    create-post
+                </div>
+            </a>    
+        </div>
+
+            <!-- Post 1 -->
+            <a href="showPost.html">
+                <div id="postLocation">
+                    
+                </div>
+            </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>© 2023 SocialHub. Todos os direitos reservados.</p>
+            <p><a href="#">Sobre</a> • <a href="#">Ajuda</a> • <a href="#">Termos</a> • <a href="#">Privacidade</a> • <a href="#">Conteúdo</a> • <a href="#">Contato</a></p>
+        </div>
+    </footer>
+    <script type="module" src="script/home.js"></script>
+    <script>
+        const url = new URLSearchParams(window.location.search)
+if(url.has("login")){
+    // Criar e mostrar a mensagem
+    const messageDiv = document.createElement('div');
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #e6ffe6;
+        color: green;
+        padding: 15px 25px;
+        border: 2px solid green;
+        border-radius: 8px;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        z-index: 10000;
+        transition: opacity 0.5s ease;
+    `;
+    messageDiv.textContent = 'Conta logada!!';
+    
+    // Adicionar ao body
+    document.body.appendChild(messageDiv);
+    
+    // Fazer desaparecer após 3 segundos
+    setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        // Remover do DOM após a transição
+        setTimeout(() => {
+            if(messageDiv.parentNode) {
+                messageDiv.parentNode.removeChild(messageDiv);
+            }
+        }, 500);
+    }, 3000);
+}
+if(url.has("PostErro")){
+    const messageDiv = document.createElement('div');
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #e6ffe6;
+        color: red;
+        padding: 15px 25px;
+        border: 2px solid red;
+        border-radius: 8px;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        z-index: 10000;
+        transition: opacity 0.5s ease;
+    `;
+    messageDiv.textContent = 'entre em uma conta para criar um post!';
+    
+    // Adicionar ao body
+    document.body.appendChild(messageDiv);
+    
+    // Fazer desaparecer após 3 segundos
+    setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        // Remover do DOM após a transição
+        setTimeout(() => {
+            if(messageDiv.parentNode) {
+                messageDiv.parentNode.removeChild(messageDiv);
+            }
+        }, 500);
+    }, 2000);
+}
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Cadastre-se<br>no <a>BLUEDIT</a></h2>
+        <form  method="POST" action="php/register.php">
+            <div class="input-group">
+                <label>Usuário</label>
+                <input type="text" id="name" name="name" placeholder="Digite seu usuário" required>
+            </div>
+
+            <div class="input-group">
+                <label>Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            </div>
+
+            <button class="login-btn" type="submit" onclick="sendForPhpRegister">Entrar</button>
+
+                <div class="extra">
+                <p><a href="index.html">continuar a navegar sem conta</a></p>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="script/script.js"></script>
+      <script>
+        const url = new URLSearchParams(window.location.search)
+        if(url.has("erro")){
+            document.body.insertAdjacentHTML('beforebegin',   `
+                <div style="
+                position: fixed;
+                top: 15%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #ffe6e6;
+                color: red;
+                padding: 10px 20px;
+                border: 1px solid red;
+                border-radius: 8px;
+                font-weight: bold;
+                text-align: center;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+                ">
+                Este nome de usuário já está em uso. Por favor, tente outro
+                </div>
+            `)
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Post - Bluedit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/home.css">
+    <style>
+         body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+         .user-actions a {
+            margin-left: 10px;
+        }
+
+        .user-actions button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: #007BFF;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .create-post-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .create-post-container h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #fafafa;
+        }
+
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+            background-color: #fff;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html">
+                <div class="logo">Bluedit</div>
+            </a>
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquisar...">
+            </div>
+            <div class="user-actions">
+                <a href="login.html">
+                    <button class="btn btn-outline">Entrar</button>
+                </a>
+                <a href="cadastro.html">
+                    <button class="btn btn-primary">Cadastrar</button>
+                </a>
+            </div>
+        </div>
+        <div name="showUser" id="showUser">
+            
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="create-post-container">
+            <h2>Criar Novo Post</h2>
+            <form method="POST" action="php/createPost.php">
+                <div class="form-group">
+                    <label for="postTitle">Título</label>
+                    <input type="text" id="postTitle" name="title" required placeholder="Digite o título do seu post">
+                </div>
+                <div class="form-group">
+                    <label for="bodyPost">Conteúdo</label>
+                    <input type="text" id="bodyPost" name="bodyPost" required placeholder="Digite o conteúdo do seu post">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Criar Post</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>© 2023 SocialHub. Todos os direitos reservados.</p>
+            <p><a href="#">Sobre</a> • <a href="#">Ajuda</a> • <a href="#">Termos</a> • <a href="#">Privacidade</a> • <a href="#">Conteúdo</a> • <a href="#">Contato</a></p>
+        </div>
+    </footer>
+
+    <script type="module" src="script/script.js"></script>
+    <script type="module" src="script/home.js"></script>
+</body>
+</html>
