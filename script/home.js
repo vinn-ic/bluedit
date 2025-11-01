@@ -4,36 +4,18 @@ const ShowUserLocation = document.getElementById("showUser");
 
 const userActionsLocation = document.getElementById("user-actions")
 
-const response = await fetch('../php/readPost.php')
-const data = await response.json();
-
-const responseCurrentUser = await fetch("../php/currentUser.php")
-const dataCurrentUser = await responseCurrentUser.json()
+const btnSair_ = document.getElementById("btnSair")
+const btnLogin_ = document.getElementById("btnLogin")
+const btnCd_ = document.getElementById("btnCd")
 
 
-postLocation.innerHTML = ''
-ShowUserLocation.innerHTML = dataCurrentUser.currentUser;
+window.addEventListener('load', async () => {
+  const response = await fetch('../php/readPost.php')
+  const data = await response.json()
 
-if(dataCurrentUser.currentUser != ' '){
-    userActionsLocation.innerHTML = "<button id='btnSair'>sair</button>"
-    const btn = document.getElementById('btnSair');
-    btn.addEventListener('click',()=>{
-        console.log('saindo...')
+  checkUser()
 
-
-        fetch('php/sair.php', {
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body:'userActions=sair'
-        }) 
-    });
-}else{
-    userActionsLocation.innerHTML = ''
-}
-
-data.posts.forEach(post => {
+  data.posts.forEach(post => {
     postLocation.innerHTML += `
     <div class="post" id="post">
         <div class="post-header">
@@ -43,7 +25,52 @@ data.posts.forEach(post => {
         <div class="post-content" id="_Body"><p> ${post.post} </p> </div>
     </div>
 `
-});
+  });
+
+
+  postLocation.innerHTML = ''
+
+
+  btnSair_.addEventListener('click', () => {
+    console.log('saindo...')
+    window.location.href = '../index.html'
+
+
+    fetch('php/sair.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: 'userActions=sair'
+    })
+
+  });
+
+})
+
+async function checkUser() {
+  const responseCurrentUser = await fetch("../php/currentUser.php")
+  const dataCurrentUser = await responseCurrentUser.json()
+
+
+  ShowUserLocation.innerHTML = dataCurrentUser.currentUser;
+  console.log(dataCurrentUser.currentUser);
+  if (dataCurrentUser.currentUser && dataCurrentUser.currentUser.trim() !== ' ') {
+    console.log("executando if")
+    btnSair_.style.display = 'block'
+    btnLogin_.style.display = 'none'
+    btnCd_.style.display = 'none'
+
+  } else {
+    btnSair_.style.display = 'none'
+    btnLogin_.style.display = 'block'
+    btnCd_.style.display = 'block'
+
+  }
+
+}
+
+
 
 
 
