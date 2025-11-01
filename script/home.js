@@ -1,4 +1,3 @@
-const postLocation = document.getElementById("postLocation");
 
 const ShowUserLocation = document.getElementById("showUser");
 
@@ -13,7 +12,8 @@ window.addEventListener('load', async () => {
   const response = await fetch('../php/readPost.php')
   const data = await response.json()
 
-  checkUser()
+  const postLocation = document.getElementById("postLocation");
+
 
   data.posts.forEach(post => {
     postLocation.innerHTML += `
@@ -27,9 +27,7 @@ window.addEventListener('load', async () => {
 `
   });
 
-
-  postLocation.innerHTML = ''
-
+  checkUser()
 
   btnSair_.addEventListener('click', () => {
     console.log('saindo...')
