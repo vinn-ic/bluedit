@@ -1,73 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feed - Bluedit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed - Bluedit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/home.css">
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="index.html">
-                <div class="logo">Bluedit</div>
-            
-            </a>
-            <div class="search-bar">
-                <input type="text" placeholder="Pesquisar...">
-            </div>
-            <div class="user-actions" id="user-actions">
-                <a href="login.html">
-                    <button class="btn btn-outline" id="btnLogin">Entrar</button>
-                </a>
-                <a href="cadastro.html">
-                    <button class="btn btn-primary" id="btnCd">Cadastrar</button>
-                </a>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="index.html">
+        <div class="logo">Bluedit</div>
 
-                <button class="btn btn-primary" id='btnSair' >sair</button>
-            </div>
-        </div>
-        
-        <div name="showUser" id="showUser">
-            
-        </div>
-    </header>
+      </a>
+      <div class="search-bar">
+        <input type="text" placeholder="Pesquisar...">
+      </div>
+      <div class="user-actions" id="user-actions">
+        <a href="login.html">
+          <button class="btn btn-outline" id="btnLogin">Entrar</button>
+        </a>
+        <a href="cadastro.html">
+          <button class="btn btn-primary" id="btnCd">Cadastrar</button>
+        </a>
 
-    <!-- Main Content -->
-    <div class="main-container">
-        <!-- Feed -->
-        <div class="feed">
-            <!-- Create Post -->
-            <a href="createPost.html">
-                <div class="create-post" >
-                    create-post
-                </div>
-            </a>    
-        </div>
+        <button class="btn btn-primary" id='btnSair'>sair</button>
+      </div>
+    </div>
 
-            <!-- Post 1 -->
-            <a href="showPost.html">
-                <div id="postLocation">
-                    
-                </div>
-            </a>
+    <div name="showUser" id="showUser">
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <p>© 2023 SocialHub. Todos os direitos reservados.</p>
-            <p><a href="#">Sobre</a> • <a href="#">Ajuda</a> • <a href="#">Termos</a> • <a href="#">Privacidade</a> • <a href="#">Conteúdo</a> • <a href="#">Contato</a></p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <!-- Feed -->
+    <div class="feed">
+      <!-- Create Post -->
+      <a href="createPost.html">
+        <div class="create-post">
+          create-post
         </div>
-    </footer>
+      </a>
+    </div>
+
+    <!-- Post 1 -->
+    <a href="showPost.html">
+      <div id="postLocation">
+
+      </div>
+    </a>
+
     <script type="module" src="script/home.js"></script>
     <script>
-        const url = new URLSearchParams(window.location.search)
-if(url.has("login")){
-    // Criar e mostrar a mensagem
-    const messageDiv = document.createElement('div');
-    messageDiv.style.cssText = `
+      const url = new URLSearchParams(window.location.search)
+      if (url.has("login")) {
+        // Criar e mostrar a mensagem
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = `
         position: fixed;
         top: 20px;
         left: 50%;
@@ -83,25 +78,25 @@ if(url.has("login")){
         z-index: 10000;
         transition: opacity 0.5s ease;
     `;
-    messageDiv.textContent = 'Conta logada!!';
-    
-    // Adicionar ao body
-    document.body.appendChild(messageDiv);
-    
-    // Fazer desaparecer após 3 segundos
-    setTimeout(() => {
-        messageDiv.style.opacity = '0';
-        // Remover do DOM após a transição
+        messageDiv.textContent = 'Conta logada!!';
+
+        // Adicionar ao body
+        document.body.appendChild(messageDiv);
+
+        // Fazer desaparecer após 3 segundos
         setTimeout(() => {
-            if(messageDiv.parentNode) {
-                messageDiv.parentNode.removeChild(messageDiv);
+          messageDiv.style.opacity = '0';
+          // Remover do DOM após a transição
+          setTimeout(() => {
+            if (messageDiv.parentNode) {
+              messageDiv.parentNode.removeChild(messageDiv);
             }
-        }, 500);
-    }, 3000);
-}
-if(url.has("PostErro")){
-    const messageDiv = document.createElement('div');
-    messageDiv.style.cssText = `
+          }, 500);
+        }, 3000);
+      }
+      if (url.has("PostErro")) {
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = `
         position: fixed;
         top: 20px;
         left: 50%;
@@ -117,23 +112,24 @@ if(url.has("PostErro")){
         z-index: 10000;
         transition: opacity 0.5s ease;
     `;
-    messageDiv.textContent = 'entre em uma conta para criar um post!';
-    
-    // Adicionar ao body
-    document.body.appendChild(messageDiv);
-    
-    // Fazer desaparecer após 3 segundos
-    setTimeout(() => {
-        messageDiv.style.opacity = '0';
-        // Remover do DOM após a transição
+        messageDiv.textContent = 'entre em uma conta para criar um post!';
+
+        // Adicionar ao body
+        document.body.appendChild(messageDiv);
+
+        // Fazer desaparecer após 3 segundos
         setTimeout(() => {
-            if(messageDiv.parentNode) {
-                messageDiv.parentNode.removeChild(messageDiv);
+          messageDiv.style.opacity = '0';
+          // Remover do DOM após a transição
+          setTimeout(() => {
+            if (messageDiv.parentNode) {
+              messageDiv.parentNode.removeChild(messageDiv);
             }
-        }, 500);
-    }, 2000);
-}
-        
+          }, 500);
+        }, 2000);
+      }
+
     </script>
 </body>
+
 </html>
