@@ -28,9 +28,9 @@ window.addEventListener("load", async () => {
     body: "post-id="+ id,
   });
   
-  const dataComment = responseComment.json()
+  const dataComment = await responseComment.json()
   dataComment.comments.forEach((comment) => {
-    commentLocation.innerHTML += `ss
+    commentLocation.innerHTML += `
       ${comment.username} <br> ${comment.comment} <br> ${comment.time} <br><br><br>
       
     `
