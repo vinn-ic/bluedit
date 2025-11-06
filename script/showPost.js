@@ -2,9 +2,7 @@ window.addEventListener("load", async () => {
   const url = new URLSearchParams(window.location.search)
   let id = url.get("PostId")
   id--
-  console.log(id)
-
-
+  
   const response = await fetch("../php/readPost.php");
   const data = await response.json();
   const postLocation = document.getElementById("ShowpostLocation");
@@ -19,4 +17,26 @@ window.addEventListener("load", async () => {
         <div class="post-content" id="_Body"><p> ${data.posts[id].post
     } </p> </div>
   `
+  id++
+  const commentLocation = document.getElementById('commentLocation')
+
+   const responseComment = await fetch("php/readComment.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "post-id="+ id,
+  });
+  
+  const dataComment = responseComment.json()
+  dataComment.comments.forEach((comment) => {
+    commentLocation.innerHTML += `ss
+      ${comment.username} <br> ${comment.comment} <br> ${comment.time} <br><br><br>
+      
+    `
+ })
+
+
 });
+
+

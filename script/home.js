@@ -34,7 +34,7 @@ window.addEventListener("load", async () => {
     console.log(div)
     const divPost = document.getElementById(div)
     divPost.addEventListener("click", () => {
-      window.location.href = `../showPost.html?PostId=${i}`
+      window.location.href = `../showPost.html?PostId=${i}` 
 
     })
   }
