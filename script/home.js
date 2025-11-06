@@ -2,6 +2,12 @@ const ShowUserLocation = document.getElementById("showUser");
 
 const userActionsLocation = document.getElementById("user-actions");
 
+const btnSair_ = document.getElementById("btnSair");
+const btnLogin_ = document.getElementById("btnLogin");
+const btnCd_ = document.getElementById("btnCd");
+
+let contPost = 0;
+
 window.addEventListener("load", async () => {
   const response = await fetch("../php/readPost.php");
   const data = await response.json();
@@ -10,16 +16,28 @@ window.addEventListener("load", async () => {
 
   data.posts.forEach((post) => {
     postLocation.innerHTML += `
-    <div class="post" id="post">
+    <div class="post" id="post${post.id}">
         <div class="post-header">
             <span class="post-meta" id="name_Post">Postado por ${post.username} em ${post.time} </span>
         </div>
         <h3 class="post-title" id="_Title"> ${post.title} </h3>
         <div class="post-content" id="_Body"><p> ${post.post} </p> </div>
-    </div>
+        <div class="post-id${post.id}" id="post-id${post.id}" data-valor="${post.id}"> ${post.id}</div>    
+</div>
 `;
+    contPost++
   });
 
+  for (let i = 1; i < contPost + 1; i++) {
+    let namediv = 'post'
+    let div = namediv + i
+    console.log(div)
+    const divPost = document.getElementById(div)
+    divPost.addEventListener("click", () => {
+      window.location.href = `../showPost.html?PostId=${i}`
+
+    })
+  }
   checkUser();
 
   btnSair_.addEventListener("click", () => {
@@ -36,10 +54,10 @@ window.addEventListener("load", async () => {
   });
 });
 
-export async function checkUser() {
-  const btnSair_ = document.getElementById("btnSair");
-  const btnLogin_ = document.getElementById("btnLogin");
-  const btnCd_ = document.getElementById("btnCd");
+
+
+
+async function checkUser() {
 
   const responseCurrentUser = await fetch("../php/currentUser.php");
   const dataCurrentUser = await responseCurrentUser.json();
