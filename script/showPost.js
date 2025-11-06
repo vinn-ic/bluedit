@@ -1,6 +1,8 @@
+const _btnComment = document.getElementById('btnComment')
+const url = new URLSearchParams(window.location.search)
+let id = url.get("PostId")
+
 window.addEventListener("load", async () => {
-  const url = new URLSearchParams(window.location.search)
-  let id = url.get("PostId")
   id--
   
   const response = await fetch("../php/readPost.php");
@@ -35,8 +37,17 @@ window.addEventListener("load", async () => {
       
     `
  })
-
-
 });
-
-
+ const _valueComment = document.getElementById('valueComment').value;
+_btnComment.addEventListener("click", () => {
+ 
+ console.log("mandar comment") 
+  fetch("php/createComment.php", { 
+    method: "POST",
+     headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "comment=" + _valueComment + "&post-id="+ id,
+  })
+  window.location.reload()
+})
