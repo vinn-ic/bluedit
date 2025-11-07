@@ -3,20 +3,26 @@ const url = new URLSearchParams(window.location.search)
 let id = url.get("PostId")
 
 window.addEventListener("load", async () => {
-  id--
   
-  const response = await fetch("../php/readPost.php");
+  const response = await fetch("../php/readPost.php", {
+    method: "POST",
+    headers: {
+       "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "post-id="+ id
+
+  });
+  id--
   const data = await response.json();
   const postLocation = document.getElementById("ShowpostLocation");
-
   postLocation.innerHTML += `
     <div class="post" id="post">
         <div class="post-header">
-            <span class="post-meta" id="name_Post">Postado por ${data.posts[id].username
-    } em ${data.posts[id].time} </span>
+            <span class="post-meta" id="name_Post">Postado por ${data.posts[0].username
+    } em ${data.posts[0].time} </span>
         </div>
-        <h3 class="post-title" id="_Title"> ${data.posts[id].title} <h3>
-        <div class="post-content" id="_Body"><p> ${data.posts[id].post
+        <h3 class="post-title" id="_Title"> ${data.posts[0].title} <h3>
+        <div class="post-content" id="_Body"><p> ${data.posts[0].post
     } </p> </div>
   `
   id++
@@ -38,16 +44,19 @@ window.addEventListener("load", async () => {
     `
  })
 });
- const _valueComment = document.getElementById('valueComment').value;
-_btnComment.addEventListener("click", () => {
+_btnComment.addEventListener("click",async () => {
+  const _valueComment = document.getElementById('valueComment').value;
  
  console.log("mandar comment") 
-  fetch("php/createComment.php", { 
+   const res = await fetch("php/createComment.php", { 
     method: "POST",
      headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: "comment=" + _valueComment + "&post-id="+ id,
   })
-  window.location.reload()
+  const action = res.json()
+  if(typeof action !== 'undefined'){
+      window.location.reload()
+  }
 })

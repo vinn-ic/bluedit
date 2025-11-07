@@ -29,6 +29,7 @@ create table comment (
     user_id INT NOT NULL,
     comment TEXT NOT NULL,
     data_comment TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    comment_id int DEFAULT NULL,
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 
