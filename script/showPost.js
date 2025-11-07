@@ -1,6 +1,8 @@
 const _btnComment = document.getElementById('btnComment')
 const url = new URLSearchParams(window.location.search)
 let id = url.get("PostId")
+let idBtnReply = 1;
+
 
 window.addEventListener("load", async () => {
   
@@ -39,11 +41,17 @@ window.addEventListener("load", async () => {
   const dataComment = await responseComment.json()
   dataComment.comments.forEach((comment) => {
     commentLocation.innerHTML += `
-      ${comment.username} <br> ${comment.comment} <br> ${comment.time} <br><br><br>
-      
+      ${comment.username} <br> ${comment.comment} <br> ${comment.time}      <br><br><br>
     `
+
+    commentLocation.innerHTML += `
+      <button class="btnReplyComment" id="btnReplyComment${idBtnReply}">reply comment</button>
+        <br>
+      ` 
+      idBtnReply++
  })
 });
+
 _btnComment.addEventListener("click",async () => {
   const _valueComment = document.getElementById('valueComment').value;
  
@@ -60,3 +68,14 @@ _btnComment.addEventListener("click",async () => {
       window.location.reload()
   }
 })
+
+//for(let i=1;i<=idBtnReply;i++){
+//  let nameId = 'btnReplyComment' + i
+//  console.log(nameId)
+//  const _btnReply = document.getElementById(nameId)
+//  
+//  _btnReply.addEventListener('click', () => {
+//    console.log('reply comment')
+//  })
+
+//}
