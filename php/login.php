@@ -23,10 +23,12 @@ while($table = $users->fetch(PDO::FETCH_NUM)){
         header('Content-Type: application/json');
         echo json_encode(['showUser' => $_SESSION['username']]);
         header("Location: ../index.html?login=". $_SESSION['username']);
-
-    }else{
-        header("Location: ../login.html?login=1");
+        exit();
     }
-
 }
+
+header("Location: ../login.html?login=1");
+
+
+
 
